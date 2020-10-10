@@ -4,10 +4,10 @@
             "name": "Cross-compile",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\ti\\ccs901\\ccs\\ccs_base\\msp430\\include_gcc",
-                "C:\\ti\\ccs901\\ccs\\msp430-gcc-8.2.0.52_win64\\msp430-elf\\include"
+                "C:\\ti\\msp430-gcc-support-files\\include",
+                "C:\\ti\\msp430-gcc-8.2.0.52_win64\\msp430-elf\\include"
             ],
-            "compilerPath": "C:/ti/ccs901/ccs/msp430-gcc-8.2.0.52_win64/bin/msp430-elf-gcc.exe",
+            "compilerPath": "C:/ti/msp430-gcc-8.2.0.52_win64/bin/msp430-elf-gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64",

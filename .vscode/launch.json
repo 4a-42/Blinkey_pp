@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Attach to gdbserver",
             "type": "gdb",
             "request": "attach",
-            "name": "Attach to gdbserver",
             "gdbpath": "C:\\ti\\msp430-gcc-8.2.0.52_win64\\bin\\msp430-elf-gdb.exe",
             "executable": "${workspaceFolder}/build/blinky++.elf",
             "target": ":2000",
@@ -16,35 +16,27 @@
             "valuesFormatting": "parseText",
             "autorun": [
                 "mon erase",
-                "load"
-            ]
-        },
-        {
-            "type": "gdb",
-            "request": "attach",
-            "name": "Debug Microcontroller",
-            "target": "extended-remote /dev/cu.usbmodem00000000",
-            "executable": "${workspaceFolder}/build/executable.elf",
-            "cwd": "${workspaceRoot}",
-            "autorun": [
-                "monitor tpwr enable",
-                "monitor swdp_scan",
-                "attach 1",
-                "load ${workspaceFolder}/build/executable.elf"
+                "load",
+                "interrupt",
+                "continue"
             ]
         },
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "enter program name, for example ${workspaceFolder}/a.exe",
+            "program": "${workspaceFolder}/build/blinky++.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "/path/to/gdb",
+            "debugServerPath": "C:/ti/msp430-gdbproxy-1.9/msp430-gdbproxy.exe",
+            "debugServerArgs": "--verbose --32bitregs",
+            "serverStarted": "Using\\ 32-bit\\ register\\ mode",
+            "miDebuggerPath": "C:/ti/msp430-gcc-8.2.0.52_win64/bin/msp430-elf-gdb.exe",
+            "miDebuggerServerAddress": "localhost:2000",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

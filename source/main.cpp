@@ -3,6 +3,13 @@
 
 #include <msp430.h>
 
+void
+f()
+{
+  for (volatile int i = 1000; i > 0; --i)
+    ;
+}
+
 int
 main()
 {
@@ -20,5 +27,6 @@ main()
     do
       i--;
     while (i != 0);
+    f();
   }
 }

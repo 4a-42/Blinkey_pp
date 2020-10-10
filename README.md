@@ -90,9 +90,12 @@ continue works by pressing ctrl+c to stop execution.
 
 Progress:
 I seem to be able to debug normally with command line. My mistake was forgetting "mon erase".
+Typing "interrupt" in the debug console is what I want to do.
 
 TODO NEXT WEEK:
-setup vscode to use gdb.
+Remap vscode gdb pause button to do equivalent of typing "interrupt" in gdb console.
+target_compile_definitions(blinky++.elf PRIVATE __MSP430FR5994__)
+target_compile_options(blinky++.elf PRIVATE -arch=msp430 -mhwmult=f5series -fno-exceptions -mlarge -ggdb3 -gdwarf-4)
 
 ### Reference documents
 
