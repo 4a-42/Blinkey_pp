@@ -1,6 +1,6 @@
 [
     {
         "name": "MSP430 GCC 8.2",
-        "toolchainFile": "${workspaceFolder}/toolchain.cmake"
+        "toolchainFile": "${workspaceFolder}/gcc-toolchain.cmake"
     }
 ]

@@ -1,3 +1,7 @@
 {
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "editor.fontSize": 20,
+    "files.associations": {
+        "cstdint": "cpp"
+    }
 }
