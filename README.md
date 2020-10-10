@@ -68,13 +68,12 @@ To allow cmake to work nicely with vscode, add this to `.vscode/cmake-kits.json`
 ### Mistakes/progress
 
 Run C:\ti\msp430-gdbproxy-1.9\msp430-gdbproxy.exe  
-TODO: find out which command line arguments to pass to it
 when I connect with gdb, I get Protocol error: Expected ACK ('+'), got 0x24 ($) and a bunch of other stuff.  
 ($=start of packet)  
 $qsupported:multiprocess;swbreak;hwbreak;qRelocation;fork-events;vfork-events;exec-events;vContSupported;qThreadEvents;no-resumed#df
 
 let's try using these arguments:
---bpmode=auto --verbose --32bitregs
+--verbose --32bitregs
 
 ```cmd
 C:\Users\4abus\source\repos\Blinkey_pp\build>"C:\ti\msp430-gcc-8.2.0.52_win64\bin\msp430-elf-gdb.exe" ".\blinky++.elf"
@@ -93,9 +92,12 @@ I seem to be able to debug normally with command line. My mistake was forgetting
 Typing "interrupt" in the debug console is what I want to do.
 
 TODO NEXT WEEK:
-Remap vscode gdb pause button to do equivalent of typing "interrupt" in gdb console.
+clang seems to like these arguments:
 target_compile_definitions(blinky++.elf PRIVATE __MSP430FR5994__)
 target_compile_options(blinky++.elf PRIVATE -arch=msp430 -mhwmult=f5series -fno-exceptions -mlarge -ggdb3 -gdwarf-4)
+
+clang-tidy seems to kinda work so far.
+in terminal type cmake --build . --target tidy
 
 ### Reference documents
 
