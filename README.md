@@ -32,6 +32,7 @@ The goal of this project is to have an example of modern, mainstream c++ tools a
   * 2gua.rainbow-brackets
   * saurabh.terminal-manager
   * vscode-icons-team.vscode-icons
+  * webfreak.debug
 * git
 * ninja
 
@@ -48,10 +49,7 @@ To allow cmake to work nicely with vscode, add this to `.vscode/cmake-kits.json`
 
 ## To-Do List
 
-* check cmake output to see if I still need `PrintVariables.cmake`
 * be able to debug
-  * workout kinks in compiler/linker flags
-    * can I debug with elf (.out) instead of .txt or .hex?
   * How does ccs debugger work? How do I debug with vscode (or command line)?
 * correctly link to the c/c++ standard library
   * use standard library without blowing up the size of the executable
@@ -63,41 +61,38 @@ To allow cmake to work nicely with vscode, add this to `.vscode/cmake-kits.json`
 * see if I can get all this to work with the ti compiler too
 * see if I can get all this to work with the iar compiler too
 * setup cmake for (off-target) unit-testing
+* setup cmake for (on-target) unit-testing
 * setup CI
 * setup cmake for doxygen
 
 ### Mistakes/progress
 
-Run C:\ti\msp430-gdbproxy-1.9\msp430-gdbproxy.exe
+Run C:\ti\msp430-gdbproxy-1.9\msp430-gdbproxy.exe  
 TODO: find out which command line arguments to pass to it
-when I connect with gdb, I get Protocol error: Expected ACK ('+'), got 0x24 ($) and a bunch of other stuff.
-($=start of packet)
+when I connect with gdb, I get Protocol error: Expected ACK ('+'), got 0x24 ($) and a bunch of other stuff.  
+($=start of packet)  
 $qsupported:multiprocess;swbreak;hwbreak;qRelocation;fork-events;vfork-events;exec-events;vContSupported;qThreadEvents;no-resumed#df
 
 let's try using these arguments:
---bpmode=auto --verbose --32bitregs --noeem
+--bpmode=auto --verbose --32bitregs
 
-cd to C:\Users\4abus\source\repos\Blinkey_pp\build
-run "C:\ti\ccs901\ccs\msp430-gcc-8.2.0.52_win64\bin\msp430-elf-gdb.exe" .\Blinky.out
-
-(gdb) target remote :2000
-Remote debugging using :2000
-0x2bfa4006 in ?? ()
-(gdb) continue
+```cmd
+C:\Users\4abus\source\repos\Blinkey_pp\build>"C:\ti\msp430-gcc-8.2.0.52_win64\bin\msp430-elf-gdb.exe" ".\blinky++.elf"
+(gdb) target remote :2000  
+(gdb) mon erase  
+(gdb) load  
+(gdb) continue  
 Continuing.
-Reply contains invalid hex digit 59
+```
 
-I seem to be able to use "continue" by pressing "ctrl-c". However, this breaks the 'step command. 
-'step' seems to work except when I use 'continue' followed by 'ctrl-c'. But 'stepi' seems to work okay.
+If you forget the mon erase and load commands, gdb may behave abnormally.
+continue works by pressing ctrl+c to stop execution.
 
 Progress:
-gdb version 7 has the same behavior.
+I seem to be able to debug normally with command line. My mistake was forgetting "mon erase".
 
 TODO NEXT WEEK:
-copy+paste code into ccs project.
-copy+paste executable into ccs project.
-see if I can debug executable.
-If I can, try configuring gdb with vscode.
+setup vscode to use gdb.
 
 ### Reference documents
 

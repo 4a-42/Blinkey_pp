@@ -5,6 +5,35 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "gdb",
+            "request": "attach",
+            "name": "Attach to gdbserver",
+            "gdbpath": "C:\\ti\\msp430-gcc-8.2.0.52_win64\\bin\\msp430-elf-gdb.exe",
+            "executable": "${workspaceFolder}/build/blinky++.elf",
+            "target": ":2000",
+            "remote": true,
+            "cwd": "${workspaceRoot}",
+            "valuesFormatting": "parseText",
+            "autorun": [
+                "mon erase",
+                "load"
+            ]
+        },
+        {
+            "type": "gdb",
+            "request": "attach",
+            "name": "Debug Microcontroller",
+            "target": "extended-remote /dev/cu.usbmodem00000000",
+            "executable": "${workspaceFolder}/build/executable.elf",
+            "cwd": "${workspaceRoot}",
+            "autorun": [
+                "monitor tpwr enable",
+                "monitor swdp_scan",
+                "attach 1",
+                "load ${workspaceFolder}/build/executable.elf"
+            ]
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
